@@ -1,8 +1,27 @@
-a = int(input('Введіть перше число: '))
-b =  int(input('Введіть друге число: '))
+class Character:
+    name = ''
+    health = 100
+    damage = 1
+    defence = 0
 
-print(f'{a} + {b} = {a + b}')
+    def __init__(self, name, health=100, damage=1, defence=0):
+        self.name = name
+        self.health = health
+        self.damage = damage
+        self.defence = defence
 
-c = int(input('введіть третє число: '))
+    def show_info(self):
+        print(self.__str__())
 
-print(f'{a} * {c} = {a * c}')
+    def __str__(self):
+        return f' = {self.name} =\n' \
+               f' Health: {self.health}\n' \
+               f' Damage: {self.damage}\n' \
+               f' Defence: {self.defence}\n' \
+
+    def take_damage(self, damage):
+        self.health -= damage
+        return damage
+
+    def attack(self, target):
+        return target.take_damage(self.damage)
