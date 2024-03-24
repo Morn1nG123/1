@@ -7,7 +7,7 @@ class Berserk(Character):
         super().__init__(name, damage)
 
     def attack(self, opponent):
-        if randint(1, 10) == 1:  # 10% chance to deal 1000 damage
+        if randint(1, 10) == 1:
             return 1000
         return super().attack(opponent)
 
@@ -18,12 +18,12 @@ class Assassin(Berserk):
 
     def attack(self, opponent):
         damage = super().attack(opponent)
-        if randint(1, 5) == 1:  # 20% chance to deal 1000 damage
+        if randint(1, 5) == 1:
             return 1000
         return damage
 
 
-# Тут можна використати решту коду для тестування:
+
 
 player1 = Character('Vasya', damage=15)
 player1.show_info()
