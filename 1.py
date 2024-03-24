@@ -37,7 +37,7 @@ while player1.is_alive() and player2.is_alive():
           f'і наніс {p1_damage} шкоди.')
 
     p2_damage = player2.attack(player1)
-    print(f'{player2.name} атакував {player1.name} '
+    print(f'{player2.name} атакувавв {player1.name} '
           f'і наніс {p2_damage} шкоди.')
 
     print(player1, player2, sep='\n')
