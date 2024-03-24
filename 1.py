@@ -1,27 +1,45 @@
-class Character:
-    name = ''
-    health = 100
-    damage = 1
-    defence = 0
+from random import randint
+from Lesson_2.character import Character
 
-    def __init__(self, name, health=100, damage=1, defence=0):
-        self.name = name
-        self.health = health
-        self.damage = damage
-        self.defence = defence
 
-    def show_info(self):
-        print(self.__str__())
+class Berserk(Character):
+    def __init__(self, name, damage):
+        super().__init__(name, damage)
 
-    def __str__(self):
-        return f' = {self.name} =\n' \
-               f' Health: {self.health}\n' \
-               f' Damage: {self.damage}\n' \
-               f' Defence: {self.defence}\n' \
+    def attack(self, opponent):
+        if randint(1, 10) == 1:  # 10% chance to deal 1000 damage
+            return 1000
+        return super().attack(opponent)
 
-    def take_damage(self, damage):
-        self.health -= damage
+
+class Assassin(Berserk):
+    def __init__(self, name, damage):
+        super().__init__(name, damage)
+
+    def attack(self, opponent):
+        damage = super().attack(opponent)
+        if randint(1, 5) == 1:  # 20% chance to deal 1000 damage
+            return 1000
         return damage
 
-    def attack(self, target):
-        return target.take_damage(self.damage)
+
+# Тут можна використати решту коду для тестування:
+
+player1 = Character('Vasya', damage=15)
+player1.show_info()
+
+player2 = Assassin('Petya', damage=10)
+print(player2)
+
+while player1.is_alive() and player2.is_alive():
+    p1_damage = player1.attack(player2)
+    print(f'{player1.name} атакував {player2.name} '
+          f'і наніс {p1_damage} шкоди.')
+
+    p2_damage = player2.attack(player1)
+    print(f'{player2.name} атакував {player1.name} '
+          f'і наніс {p2_damage} шкоди.')
+
+    print(player1, player2, sep='\n')
+
+print(player1, player2, sep='\n')
